@@ -10,13 +10,20 @@ body{
     
 }
 .cover{
+    width: 100%;
     background-image: url(images/cover.png);
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
     min-width: 330px;
     height: 208px;
     /* position: relative; */
+}
+.cover-text-content{
+    width: 550px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
 .cover h1{
     font-size: 43px;
@@ -105,6 +112,7 @@ input{
     justify-content: center;
 }
 .movie-list{
+    position: relative;
     width: 550px;
     margin: 30px auto;
 }
@@ -156,6 +164,27 @@ input{
     margin: 30px auto;
     width: 461px;
     border-color: #4B4B4B;
+}
+
+.initial-state{
+    width: 150px;
+    color: #2E2E2F;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 9px;
+    position: absolute;
+    left: 50%;
+    right: 50%;
+    transform: translateX(-50%);
+    top: 100px;
+}
+.initial-state p{
+    font-size: 18px;
+}
+.initial-state img{
+    width: 70px;
 }
 
 /* @media (max-width: 470px){
