@@ -111,16 +111,19 @@ input{
     gap: 21px;
     justify-content: center;
 }
-.movie-list{
+.search-list, .watch-list{
     position: relative;
     width: 550px;
     margin: 30px auto;
 }
-.add-to-watchlist{
+.add-to-watchlist, .remove-from-watchlist{
     border: none;
     font-size: 14px;
     border-radius: 100%;
     padding: 0px;
+}
+.add-to-watchlist:hover, .add-to-watchlist:active{
+    background-color: #5b5b5b;
 }
 .watchlist-add-div{
     display: flex;
@@ -128,14 +131,18 @@ input{
     justify-content: center;
     gap: 5px;
 }
+.add-to-watchlist i{
+    pointer-events: none;
+}
+
 .line-1, .line-2, .line-3{
     line-height: 20px;
+    width: 342px;
 }
 .line-2, .line-3{
     margin-top: 8px;
 }
 .line-3{
-    width: 342px;
     height: 60px;
     font-size: 14px;
     color: #A5A5A5;
