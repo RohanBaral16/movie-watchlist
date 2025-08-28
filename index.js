@@ -55,7 +55,7 @@ function addToWatchlist(event){
 
 async function searchMovie(){
     document.getElementById('search-list').innerHTML = ''
-    const res = await fetch(`http://www.omdbapi.com/?i=tt3896198&apikey=b9dfc050&s=${movieNameInput.value}`)
+    const res = await fetch(`https://www.omdbapi.com/?i=tt3896198&apikey=b9dfc050&s=${movieNameInput.value}`)
     const data = await res.json()
     console.log(data)
     let searchList=[]
@@ -71,7 +71,7 @@ async function searchMovie(){
 
 async function searchByimbdId(movieID){
     console.log('inside id function')
-    const res = await fetch(`http://www.omdbapi.com/?i=${movieID}&apikey=b9dfc050`)
+    const res = await fetch(`https://www.omdbapi.com/?i=${movieID}&apikey=b9dfc050`)
     const data = await res.json()
     console.log('data fetched', data)
     return data
