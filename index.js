@@ -1,11 +1,31 @@
 const movieNameInput = document.getElementById('input-box')
 const searchBtn = document.getElementById('search-btn')
 let watchList = []
-renderWatchList()
+
+if(document.title === 'Watchlist'){
+    renderWatchList()
+    document.body.addEventListener('click', (e)=>{
+        if(e.target.dataset.id){
+            removeFromWatchList(e.target.dataset.id)
+        }
+    })
+}
+
+function removeFromWatchList(movieId){
+    if(watchList.includes(movieId)){
+        let index = watchList.indexOf(movieId)
+        console.log('before removing, index', watchList, index)
+        watchList.splice(index, 1)
+        console.log('after removing, ', watchList)
+        localStorage.setItem('watchlist', JSON.stringify(watchList))
+        renderWatchList()
+    }
+}
 
 
 searchBtn.addEventListener('click', searchMovie)
 document.getElementById('search-list').addEventListener('click', addToWatchlist)
+
 
 function getWatchList(){
     if(localStorage.getItem('watchlist')){
@@ -68,8 +88,8 @@ async function renderWatchList(){
             console.log('movie pushed to array')
         }
         console.log( ' the watchlist whole data is : ', watchListData)
-        watchlistHtmlRender(watchListData, 'watch-list')
     }
+    watchlistHtmlRender(watchListData, 'watch-list')
 
 }
 
