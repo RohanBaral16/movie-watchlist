@@ -125,6 +125,8 @@ input{
 .add-to-watchlist:hover, .add-to-watchlist:active{
     background-color: #5b5b5b;
 }
+
+.add-to-watchlist:
 .watchlist-add-div{
     display: flex;
     align-items: center;

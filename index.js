@@ -44,6 +44,7 @@ function addToWatchlist(event){
     if(event.target.dataset.id){
         getWatchList()
         if(!watchList.includes(event.target.dataset.id)){
+            event.target.disabled = true;
             addToStorage(event.target.dataset.id)
         }
         else{
@@ -53,6 +54,7 @@ function addToWatchlist(event){
 }
 
 async function searchMovie(){
+    document.getElementById('search-list').innerHTML = ''
     const res = await fetch(`http://www.omdbapi.com/?i=tt3896198&apikey=b9dfc050&s=${movieNameInput.value}`)
     const data = await res.json()
     console.log(data)
@@ -60,9 +62,9 @@ async function searchMovie(){
     for (let movie of data.Search){
         const movieData = await searchByimbdId(movie.imdbID)
         searchList.push(movieData)
+        renderMovies(movieData, 'search-list')
     }
     console.log(searchList)
-    renderMovies(searchList, 'search-list')
     // the data we need are 
 }
 
@@ -76,27 +78,23 @@ async function searchByimbdId(movieID){
 }
 
 async function renderWatchList(){
+    document.getElementById('watch-list').innerHTML = ''
     console.log('rendering watchlist')
     getWatchList()
     console.log(watchList, watchList.length)
-    let watchListData = []
     if(watchList.length>0){
         for(let movieId of watchList){
             console.log('inside the loop for movieID', movieId)
             const movieData = await searchByimbdId(movieId)
-            watchListData.push(movieData)
             console.log('movie pushed to array')
+            watchlistHtmlRender(movieData)
         }
-        console.log( ' the watchlist whole data is : ', watchListData)
     }
-    watchlistHtmlRender(watchListData, 'watch-list')
-
 }
 
-function renderMovies(movieList, listClass){
+function renderMovies(movie, listClass){
     let renderHtml = ''
-    movieList.forEach(movie => {
-        renderHtml += `     
+    renderHtml = `     
             <div class="movie-holder" id="movie-holder">
                 <div class="image-holder">
                     <img class="poster-image" src=${movie.Poster}>
@@ -123,14 +121,11 @@ function renderMovies(movieList, listClass){
             </div>
             <hr class="line-between"></hr>
         `
-    });
-    document.getElementById(listClass).innerHTML = renderHtml
+    document.getElementById(listClass).innerHTML += renderHtml
 }
 
-function watchlistHtmlRender(movieList, listClass){
-    let renderHtml = ''
-    movieList.forEach(movie => {
-        renderHtml += `     
+function watchlistHtmlRender(movie){
+    let renderHtml = `     
             <div class="movie-holder" id="movie-holder">
                 <div class="image-holder">
                     <img class="poster-image" src=${movie.Poster}>
@@ -157,7 +152,6 @@ function watchlistHtmlRender(movieList, listClass){
             </div>
             <hr class="line-between"></hr>
         `
-    });
-    document.getElementById(listClass).innerHTML = renderHtml
+    document.getElementById('watch-list').innerHTML += renderHtml
 }
 
